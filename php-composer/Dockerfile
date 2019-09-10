@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:7.3.9-apache
 MAINTAINER Sebastian Lundh <s.lundh@gmail.com>
 
 # Install php extensions (see https://hub.docker.com/_/php/)
@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
    libxml2-dev \
    libpng-dev \
    zlib1g-dev \
+   libzip-dev \
    && pecl install redis \
    && docker-php-ext-install mbstring \
    && docker-php-ext-install pdo \
