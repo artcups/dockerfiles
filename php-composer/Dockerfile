@@ -1,4 +1,4 @@
-FROM php:7.3.9-apache
+FROM php:7.4-apache
 MAINTAINER Sebastian Lundh <s.lundh@gmail.com>
 
 # Install php extensions (see https://hub.docker.com/_/php/)
