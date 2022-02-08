@@ -1,3 +1,6 @@
+Great thanks to a11smiles
+This is forked from: https://github.com/a11smiles/docker-nano-nodejs
+
 # docker-nano-nodejs
 This builds a docker image based on Microsoft Windows Nano Server and containing Node.js.  The docker image _only_ intalls Node.js and NPM, and adds the install folder to the system path.  There is no additional Windows coniguration (i.e. IIS, firewalls, dns, etc.). The purpose of this image is to allow developers to deploy Node.js applications in environments where a Windows-based system is required or preferred over a Linux distro.  The resulting image (and containers) requires Docker to be installed in a Windows environment or Windows Container services to be enabled.
 
