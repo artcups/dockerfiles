@@ -1,14 +1,13 @@
 # escape=`
 
 FROM microsoft/nanoserver:latest
-MAINTAINER Joshua Davis <me@jdav.is>
 
-# copy nodejs to nanoserver
-RUN mkdir "C:\nodejs"
-ADD ./nodejs/nodejs /nodejs
+LABEL Description="Windows Server 2016 Nano Server base OS image for Windows containers" Vendor="Compulim" Version="${NODE_VERSION}"
+MAINTAINER s.lundh@gmail.com
 
-# set path
-RUN powershell.exe -NoProfile -ExecutionPolicy Bypass -Command `
-    $oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).Path; `
-    $newpath = 'C:\nodejs;'+$oldpath; `
-    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newpath;
+ADD https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-win-x64.zip C:\\build\\node-v${NODE_VERSION}-win-x64.zip
+
+RUN powershell -Command Expand-Archive C:\build\node-v${NODE_VERSION}-win-x64.zip C:\; Rename-Item C:\node-v${NODE_VERSION}-win-x64 node
+RUN SETX PATH C:\node
+
+ENTRYPOINT C:\node\node.exe
